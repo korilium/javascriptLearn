@@ -30,8 +30,8 @@ let HumanScore = 0;
 let ComputerScore = 0;
 
 function playRound(humanChoice, computerChoice) {
-    humanChoice = humanChoice.toLowerCase();
-    computerChoice = computerChoice.toLowerCase();
+    humanChoice = humanChoice.toString().toLowerCase();
+    computerChoice = computerChoice.toString().toLowerCase();
     if (humanChoice === computerChoice) {
         return "It's a tie!";
     } else if (
@@ -40,24 +40,38 @@ function playRound(humanChoice, computerChoice) {
         (humanChoice === "scissors" && computerChoice === "paper")
     ) {
         HumanScore = HumanScore + 1;
-        return "You win! humanScore:" + humanChoice + " vs computerScore:" + computerChoice;
+        return "You win! humanScore:" + HumanScore + " vs computerScore:" + ComputerScore;
     } else {
         ComputerScore = ComputerScore + 1;
         return "You lose! humanScore:" + HumanScore + " vs computerScore:" + ComputerScore;
     }
 }
 
-function playGame() {
-    for (let i = 0; i < 5; i++) {
-        const humanChoice = getHumanChoice();
-        const computerChoice = getComputerChoice();
-        playRound(humanChoice, computerChoice);
-    }
-    if (HumanScore > ComputerScore) {
-        console.log("You win the game! humanScore:" + HumanScore + " vs computerScore:" + ComputerScore);
-    } else if (ComputerScore > HumanScore) {
-        console.log("You lose the game! humanScore:" + HumanScore + " vs computerScore:" + ComputerScore);
-    } else {
-        console.log("It's a tie! humanScore:" + HumanScore + " vs computerScore:" + ComputerScore);
-    }
-}
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+const humanScoreDisplay = document.querySelector("#humanScore");
+const computerScoreDisplay = document.querySelector("#computerScore");
+
+
+
+rock.addEventListener("click", () => {
+    const computerChoice = getComputerChoice();
+    playRound("rock", computerChoice);
+    humanScoreDisplay.textContent = "Human Score: " + HumanScore;
+    computerScoreDisplay.textContent = "Computer Score: " + ComputerScore;
+})
+paper.addEventListener("click", () => {
+    const computerChoice = getComputerChoice();
+    playRound("paper", computerChoice);
+    humanScoreDisplay.textContent = "Human Score: " + HumanScore;
+    computerScoreDisplay.textContent = "Computer Score: " + ComputerScore;
+})
+scissors.addEventListener("click", () => {
+    const computerChoice = getComputerChoice();
+    playRound("scissors", computerChoice);
+    humanScoreDisplay.textContent = "Human Score: " + HumanScore;
+    computerScoreDisplay.textContent = "Computer Score: " + ComputerScore;
+
+})
+
