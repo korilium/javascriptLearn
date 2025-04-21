@@ -14,6 +14,7 @@ function createGrid(size) {
         block.classList.add("block");
         block.style.width = `${100 / size}%`; // Set width to fill the container
         block.style.height = `${100 / size}%`; // Set height to fill the container
+        block.style.flex = `0 0 ${80/size }%%`; // Set height to fill the container
         block.addEventListener("mouseover", () => {
             block.style.backgroundColor = "rgb(18, 93, 222)";
         });
