@@ -1,0 +1,55 @@
+header {
+    background-color: #f4f4f4;
+    padding: 10px 20px;
+    border-bottom: 1px solid #eee;
+}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh; /* Full height of the viewport */
+    width: 100vw; /* Full width of the viewport */
+    display: flex;
+    flex-direction: column;
+}
+
+
+#sidebar {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-right: 1px solid #eee;
+    width: 25%; /* Sidebar takes 25% of the width */
+}
+main {
+    padding: 20px;
+    flex-direction: row;
+    flex: 1;
+    display: flex;
+
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* Ensures the main content takes the full height of the viewport */
+    /* This is important to ensure the sidebar and main content are aligned */
+    height: 100%;
+    width: 100%;
+}
+
+#projects {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-right: 1px solid #eee;
+    box-sizing: border-box;
+    overflow-y: auto;
+    width: 75%; /* Projects section takes 25% of the width */
+}
+
+#taskList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#taskList li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
