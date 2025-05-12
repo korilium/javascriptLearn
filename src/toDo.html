@@ -17,9 +17,10 @@
         <div id="sidebar">
             <h2>projects</h2>
             <form id="projectForm">
-                <button type="submit">Add Project</button>
+                <button class="button" type = "button" id="HomeButton">Home</button>
+                <button class="button" type = "button" id="TutorialButton">tutorial</button>
             </form>
-        </div>
+            <button class="button" type="button" id="addFormProjectButton">Add Project</button>        </div>
         <div id="projects">
             <div id="description">
                 <h3>Description</h3>
@@ -34,14 +35,6 @@
                 <p>Organize tasks by priority or due date.</p>
                 <p>Regularly review and update your task list.</p>
             </div>
-
-            <form id="toDoForm">
-                <input type="text" id="taskInput" placeholder="Enter a new task" required>
-                <button type="submit">Add Task</button>
-            </form>
-            <ul id="taskList">
-                <!-- Task items will be dynamically added here -->
-            </ul>
         </div>
     </main>
     <script src="toDo.js"></script>
