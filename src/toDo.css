@@ -1,0 +1,96 @@
+header {
+    background-color: #f4f4f4;
+    padding: 10px 20px;
+    border-bottom: 1px solid #eee;
+}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh; /* Full height of the viewport */
+    width: 100vw; /* Full width of the viewport */
+    display: flex;
+    flex-direction: column;
+}
+
+
+#sidebar {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-right: 1px solid #eee;
+    width: 25%; /* Sidebar takes 25% of the width */
+}
+main {
+    padding: 20px;
+    flex-direction: row;
+    flex: 1;
+    display: flex;
+
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* Ensures the main content takes the full height of the viewport */
+    /* This is important to ensure the sidebar and main content are aligned */
+    height: 100%;
+    width: 100%;
+}
+
+#projectModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+#projects {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-right: 1px solid #eee;
+    box-sizing: border-box;
+    overflow-y: auto;
+    width: 75%; /* Projects section takes 25% of the width */
+}
+
+
+
+#projectForm fieldset {
+    display: flex;
+    flex-direction: column; /* Stack rows vertically */
+    gap: 10px; /* Add spacing between rows */
+    border: none; /* Optional: Remove fieldset border */
+    padding: 0;
+}
+
+#projectForm label {
+    display: inline-block;
+    width: 150px; /* Set a fixed width for labels */
+    font-weight: bold;
+}
+
+#projectForm input,
+#projectForm select {
+    width: calc(100% - 16px); /* Adjust width to fit next to the label */
+    padding: 5px;
+    margin-left: 10px; /* Add spacing between label and input */
+    box-sizing: border-box;
+}
+
+.button {
+    margin-top: 10px; /* Add spacing above buttons */
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#projectForm button:hover {
+    background-color: #0056b3;
+}

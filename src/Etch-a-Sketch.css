@@ -1,0 +1,21 @@
+
+
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start; /* Align blocks to the top */
+    margin: 5% auto;
+    padding: 20px;
+    width: 80%;
+    height: 500px; /* Adjust height to fit content */
+    background-color: #538ae9;
+    overflow: hidden; /* Hide overflow */
+    box-sizing: border-box; /* Include padding and border in the container's dimensions */
+
+}
+
+#container .block {
+    background-color: #fff; /* Optional: Set a default background color */
+}
+
