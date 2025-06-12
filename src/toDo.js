@@ -6,8 +6,8 @@ window.addEventListener("DOMContentLoaded", function () {
     Home.Home();
     projects.domListener(); // Initialize the projects module
     if (!localStorage.getItem('projects')) {
-    localStorage.setItem('projects', JSON.stringify([]));
-}
+        localStorage.setItem('projects', JSON.stringify([]));
+    }
 
 });
 
@@ -29,7 +29,7 @@ var tutorial = {
                 dueDate: '2025-10-01',
                 tasks: [
                     { name: 'task 1', description: 'this is task 1' },
-                    { name: 'task 2', description: 'this is task 2'},
+                    { name: 'task 2', description: 'this is task 2' },
                     { name: 'task 3', description: 'this is task 3' }
                 ]
             };
@@ -56,10 +56,10 @@ var tutorial = {
 
             projectList.appendChild(listItem);
             document.getElementById('addTask').addEventListener('click', function () {
-                    const taskText = prompt('Enter task text:');
-                    if (taskText) {
-                        task.add(taskText);
-                    }
+                const taskText = prompt('Enter task text:');
+                if (taskText) {
+                    task.add(taskText);
+                }
             });
             document.getElementById('deleteTask').addEventListener('click', function () {
                 const taskText = prompt('Enter task text to delete:');
@@ -137,9 +137,9 @@ var projects = {
 
     domListener:
         function domListener() {
-                document.getElementById('addFormProjectButton').addEventListener('click', function () {
-                    projects.addForm();
-                });
+            document.getElementById('addFormProjectButton').addEventListener('click', function () {
+                projects.addForm();
+            });
         },
 
     addForm:
@@ -188,18 +188,18 @@ var projects = {
             //         document.body.removeChild(modal);
             //     }
             // });
-                document.getElementById('submitProjectButton').addEventListener('click', function () {
-                    projects.add();
-                });
-                document.getElementById('cancelButton').addEventListener('click', function () {
-                    const modal = document.getElementById('ProjectModal');
-                    if (modal) {
-                        document.body.removeChild(modal);
-                    }
-                });
+            document.getElementById('submitProjectButton').addEventListener('click', function () {
+                projects.add();
+            });
+            document.getElementById('cancelButton').addEventListener('click', function () {
+                const modal = document.getElementById('ProjectModal');
+                if (modal) {
+                    document.body.removeChild(modal);
+                }
+            });
         },
     add: function addProject() {
-        
+
         const projectList = document.getElementById('projectList');
         const projectName = document.getElementById('projectName').value;
         const projectDescription = document.getElementById('projectDescription').value;
@@ -224,7 +224,7 @@ var projects = {
             projects.load(project.name);
         });
 
-        
+
 
         const listItem = document.createElement('div');
         listItem.className = 'project';
@@ -259,6 +259,50 @@ var projects = {
                 <button class="button" id="deleteProject">Delete Project</button>
             `;
             projectList.appendChild(listItem);
+            document.getElementById('addTask').addEventListener('click', function () {
+                const taskText = prompt('Enter task text:');
+                if (taskText) {
+                    task.add(taskText);
+                }
+            });
+            document.getElementById('deleteTask').addEventListener('click', function () {
+                const taskText = prompt('Enter task text to delete:');
+                if (taskText) {
+                    const taskList = document.getElementById('taskList');
+                    const listItem = Array.from(taskList.children).find(item => item.textContent.includes(taskText));
+                    if (listItem) {
+                        taskList.removeChild(listItem);
+                    } else {
+                        alert('Task not found.');
+                    }
+                }
+            });
+            document.getElementById('editTask').addEventListener('click', function () {
+                const oldTaskText = prompt('Enter task text to edit:');
+                if (oldTaskText) {
+                    const newTaskText = prompt('Enter new task text:');
+                    if (newTaskText) {
+                        const taskList = document.getElementById('taskList');
+                        const listItem = Array.from(taskList.children).find(item => item.textContent.includes(oldTaskText));
+                        if (listItem) {
+                            listItem.textContent = newTaskText;
+                        } else {
+                            alert('Task not found.');
+                        }
+                    }
+                }
+            });
+            document.getElementById('deleteProject').addEventListener('click', function () {
+                const projectName = project.name;
+                const projectsArray = JSON.parse(localStorage.getItem('projects')) || [];
+                const updatedProjectsArray = projectsArray.filter(p => p.name !== projectName);
+                localStorage.setItem('projects', JSON.stringify(updatedProjectsArray));
+                const projectList = document.getElementById('projectList');
+                const listItem = Array.from(projectList.children).find(item => item.textContent.includes(projectName));
+                if (listItem) {
+                    projectList.removeChild(listItem);
+                }
+            })
         }
     },
 
@@ -272,7 +316,7 @@ var projects = {
 }
 
 
- 
+
 
 
 
@@ -282,7 +326,7 @@ var task = {
         const taskList = document.getElementById('taskList');
         const listItem = document.createElement('li');
         listItem.textContent = taskText;
-        taskList.appendChild(listItem); 
+        taskList.appendChild(listItem);
     }
 };
 
