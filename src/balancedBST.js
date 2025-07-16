@@ -40,7 +40,8 @@ function merge(left, right) {
 
 
 
-
+// Create a new tree instance with the sorted array
+const myTree = new Tree(array);
 
 
 // Create a balanced BST from the sorted array
@@ -101,9 +102,89 @@ function find (node, data) {
     }
 }
 
+function levelOrderTraversal(node) {
+    if (node === null) return [];
+    const queue = [node];
+    const result = [];
+    while (queue.length > 0) {
+        const current = queue.shift();
+        result.push(current.data);
+        if (current.left !== null) queue.push(current.left);
+        if (current.right !== null) queue.push(current.right);
+    }
+    return result;
+}
+
+function inOrderTraversal(node) {
+    if (node === null) return [];
+    return [
+        ...inOrderTraversal(node.left),
+        node.data,
+        ...inOrderTraversal(node.right)
+    ];
+}       
+
+function preOrderTraversal(node) {
+    if (node === null) return [];
+    return [
+        node.data,
+        ...preOrderTraversal(node.left),
+        ...preOrderTraversal(node.right)
+    ];
+}   
+function postOrderTraversal(node) {
+    if (node === null) return [];
+    return [
+        ...postOrderTraversal(node.left),
+        ...postOrderTraversal(node.right),
+        node.data
+    ];
+}
+
+
+function height(node) {
+    if (node === null) return -1; // Return -1 for null nodes
+    return 1 + Math.max(height(node.left), height(node.right));
+}
+
+function isBalanced(node) {
+    if (node === null) return true;
+    const leftHeight = height(node.left);
+    const rightHeight = height(node.right);
+    return Math.abs(leftHeight - rightHeight) <= 1 &&
+           isBalanced(node.left) &&
+           isBalanced(node.right);
+}
+
+function depth(node, data, currentDepth = 0) {
+    if (node === null) return -1; // Return -1 if the node is not found
+    if (node.data === data) return currentDepth;
+    const leftDepth = depth(node.left, data, currentDepth + 1);
+    if (leftDepth !== -1) return leftDepth; // Found in left subtree
+    return depth(node.right, data, currentDepth + 1); // Search in right subtree
+}
+
+function rebalance(node) {
+    const values = inOrderTraversal(node);
+    return buildTree(values);
+}
+
+levelOrderTraversal(myTree.root); // This will return the level order traversal of the tree
 
 
 // test case 
 
 const myTree2 = new Tree(array);
 prettyPrint(myTree2.root);
+
+
+// Insert a new value into the tree
+const newValue = 10;
+myTree2.root = insert(myTree2.root, newValue);
+console.log(`\nAfter inserting ${newValue}:`);
+prettyPrint(myTree2.root);  
+
+// Find a value in the tree
+const valueToFind = 23;
+const found = find(myTree2.root, valueToFind);
+console.log(`\nValue ${valueToFind} found: ${found}`);  
